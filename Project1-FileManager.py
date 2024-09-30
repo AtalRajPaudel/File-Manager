@@ -1,95 +1,136 @@
 import os
 
-current_directory = os.getcwd()
-print(f"This is my current directory : {current_directory}")
+##Defining the functions
+## to know current directory
+def current_directory():
+    current_directory = os.getcwd()
+    print(f"You are in '{current_directory}' directory.")
 
-
-# This a function to list the files in the directory
-def list_files(directory):
+##to list all the files and folders in the current directory
+def list_directory(directory_path):
     try:
-        files = os.listdir(directory)
-        print(f"Files in {directory}")
+        files = os.listdir(directory_path)
         for file in files:
             print(file)
+        print(f"The files in the directory '{directory_path}' have been listed")
     except FileNotFoundError:
-        print(f"The directory '{directory}' does not exist")
-    
+        print(f"The directory '{directory_path}' does not exist")
     except Exception as e:
-        print(f"An error occured: {e}")
+        print(f"An error occured. {e}")
 
-# This is a function to create the files in the directory
+
+## To create directories in a certain path
 def create_directory(directory_path):
     try:
         os.mkdir(directory_path)
-        print(f"Directory '{directory_path}' created successfully")
+        print(f"A directory is created in '{directory_path}'")
     except FileExistsError:
-        print(f"Directory '{directory_path}' already exists")
+        print(f"A directory already exists in the path '{directory_path}'")
     except Exception as e:
-        print(f"An error occured: {e}")
+        print(f"An error occured {e}")
 
-# to create a file in python
-file = open('../trial/trial.txt','a+')
-file.write("Test Test once twice i dont know just count the lines okay")
-file.close()
-###
 
-## to rename a file 
+## To create a file
+def create_file(file_name):
+    try:
+        file = open(file_name,"a+")
+        file.write("This is new line in python file program")
+        file.close()
+        print(f"The file has been created with name '{file_name}'")
+    except Exception as e:
+        print(f"An error occured. {e}")
+    
+
+###to rename a file 
 def rename_file(current_name, new_name):
     try:
         os.rename(current_name, new_name)
-        print(f"File renamed from '{current_name}' to '{new_name}'.")
+        print(f"File name changed from '{current_name}' to '{new_name}'")
     except FileNotFoundError:
-        print(f"The file '{current_name}' does not exist")
+        print(f"File is not found in the directory path : '{current_name}'")
     except Exception as e:
-        print(f"An error occured : {e}")
+        print(f"An error occured {e}")
 
 
-##to delete a file
+## To delete a file
 def delete_file(file_path):
     try:
         os.remove(file_path)
-        print(f"File '{file_path}' deleted successfully")
+        print(f"File deleted in the file path  '{file_path}")
     except FileNotFoundError:
-        print(f"The file '{file_path}' does not exist")
+        print(f"The file does not exist in the '{file_path}'")
     except Exception as e:
-        print(f"An error occured: {e}")
+        print(f"An error occured {e}")
 
-
-## to delete a directory  but the directory must be empty
+### To delete a directory. Also the directory must be empty to be deleted
 def delete_directory(directory_path):
     try:
         os.rmdir(directory_path)
-        print(f"The directory '{directory_path}' has been removed")
+        print(f"The directory has been deleted from path '{directory_path}")
     except FileNotFoundError:
-        print(f"The directory '{directory_path}' does not exist")
+        print(f"The file does not exist in the path '{directory_path}")
     except OSError:
         print(f"The directory '{directory_path}' is not empty or cannot be deleted")
     except Exception as e:
-        print(f"An error occured: {e}")
+        print(f"An error occured {e}")
 
 
 
-#Example usage for the creation of directory
-directory = input("Enter the path where you want to create a new directory: ")
-new_directory_name = input("Enter the name of the new directory: ")
-new_directory_path = os.path.join(directory, new_directory_name)
-create_directory(new_directory_path)
+## now creating a switch statement to do all the tasks as demanded by the user
+def File_Manager(run):
+    while run:
+        print(f" Hii ! This is a File Manager")
+        print(f"What would you like to do today? \n")
+        print("1. Know your current directory")
+        print("2. List the current directory")
+        print("3. Create a directory")
+        print("4. Remove a directory")
+        print("5. Create a file")
+        print("6. Remove a file")
+        print("7. Rename a file")
+        print("8. EXIT")
 
-    
-directory = input("Enter the directory path: ")
-list_files(directory)
+        print("Choose from 1-7")
+        choice = input("You would like to : ")
+
+        if choice == '1':
+            current_directory()
+        elif choice == '2':
+            to_list_directory = input(f"Enter the directory path: ")
+            list_directory(to_list_directory)
+        elif choice == '3':
+            directory_name = input("Enter the directory name : ")
+            directory_path = input("Enter the path of the directory: ")
+            new_directory_path = os.path.join(directory_path, directory_name)
+            create_directory(new_directory_path)
+        elif choice == '4':
+            to_delete_directory = input("Enter the path of the directory along with the name: ")
+            delete_directory(to_delete_directory)
+        elif choice == '5':
+            file_path = input("Enter the path of the directory: ")
+            file_name = input("Enter the name of the file to create: ")
+            new_file_path = os.path.join(file_path, file_name)
+            create_file(new_file_path)
+        elif choice == '6':
+            file_to_delete = input("Enter the file path: ")
+            delete_file(file_to_delete)
+        elif choice == '7':
+            rename_file_path = input("Enter the file path: ")
+            current_name = input("Enter the current name of the file: ")
+            new_name = input("Enter the new name of the file: ")
+            current_name = os.path.join(rename_file_path, current_name)
+            new_name = os.path.join(rename_file_path, new_name)
+            rename_file(current_name, new_name)
+
+        elif choice == '8':
+            run = False
+        else:
+            run = True
 
 
-## for renaming a file 
-current_file = input ("Enter the curent file name with the path: ")
-new_file_name = input ("Enter the new name for the file: ")
-rename_file(current_file, new_file_name)
+            
 
+        
+run = True
+File_Manager(run)
 
-# for deleting a file 
-file_to_delete  = input("Enter the file path to delete: ")
-delete_file(file_to_delete)
-
-##for deleting a directory
-delete_the_directory = input(f"Enter the file path of the directory you want to remove : ")
-delete_directory(delete_the_directory)
