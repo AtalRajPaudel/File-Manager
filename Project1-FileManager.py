@@ -107,7 +107,9 @@ def File_Manager(run):
         print("5. Create a file")
         print("6. Remove a file")
         print("7. Rename a file")
-        print("8. EXIT")
+        print("8. Copy file from one folder to another")
+        print("9. Copy a folder from one place to another")
+        print("10. EXIT")
 
         print("Choose from 1-7")
         choice = input("You would like to : ")
@@ -142,6 +144,16 @@ def File_Manager(run):
             rename_file(current_name, new_name)
 
         elif choice == '8':
+            copy_file = input("Enter the source from which to copy: ")
+            copy_file_destination = input("Enter the destination of the file: ")
+            copy_file(copy_file, copy_file_destination)
+
+        elif choice == '9':
+            copy_directory = input("Enter the source of the directory: ")
+            copy_directory_destination = input("Enter the destination of the directory: ")
+            copy_directories( copy_directory, copy_directory_destination)
+
+        elif choice == '10':
             run = False
         else:
             run = True
