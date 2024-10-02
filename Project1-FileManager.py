@@ -1,4 +1,5 @@
 import os
+import shutil
 
 ##Defining the functions
 ## to know current directory
@@ -73,6 +74,24 @@ def delete_directory(directory_path):
         print(f"The directory '{directory_path}' is not empty or cannot be deleted")
     except Exception as e:
         print(f"An error occured {e}")
+
+### To copy files and folder
+def copy_file(source,destination):
+    try:
+        shutil.copy(source, destination)
+        print(f"The file is copied from '{source}' to '{destination}'")
+    except Exception as e:
+        print(f"An error occured {e}")
+
+## to copy folder from one place to another
+def copy_directories(source, destination):
+    try:
+        shutil.copytree(source, destination)
+        print(f"Folder successfully copied from '{source}' to '{destination}'.")
+    except FileExistsError:
+        print(f"The file already exists in the '{destination}'.")
+    except Exception as e:
+        print(f"An error occured: {e}")
 
 
 
