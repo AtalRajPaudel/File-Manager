@@ -93,6 +93,16 @@ def copy_directories(source, destination):
     except Exception as e:
         print(f"An error occured: {e}")
 
+#to move file from one place to another
+def move_file_directory(source,destination):
+    try:
+        shutil.move(source,destination)
+        print(f"File successfully moved from '{source}' to '{destination}'.")
+    except FileExistsError:
+        print(f"File already exists in the destination: {destination}.")
+    except exception as e:
+        print(f"An error occured.'{e}')
+
 
 
 ## now creating a switch statement to do all the tasks as demanded by the user
@@ -109,7 +119,8 @@ def File_Manager(run):
         print("7. Rename a file")
         print("8. Copy file from one folder to another")
         print("9. Copy a folder from one place to another")
-        print("10. EXIT")
+        print("10. Move a folder or file from one place to another")
+        print("11. EXIT")
 
         print("Choose from 1-7")
         choice = input("You would like to : ")
@@ -154,6 +165,11 @@ def File_Manager(run):
             copy_directories( copy_directory, copy_directory_destination)
 
         elif choice == '10':
+            move_fof = input("Enter the source of the file or folder: ") ###fof means file or folder
+            move_fof_to = input("Enter the destination of the file or folder: ")
+            move_file_directory(move_fof, move_fof_to)
+            
+        elif choice == '11':
             run = False
         else:
             run = True
