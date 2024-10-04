@@ -103,6 +103,13 @@ def move_file_directory(source,destination):
     except exception as e:
         print(f"An error occured.'{e}')
 
+#To check disk usage of the folder or file
+
+def check_disk_usage(path):
+    usage = shutil.disk_usage(path)
+    print(f"Total Space : {usage.total//(1024**3)} GB")
+    print(f" Used: {usage.used//(1024 ** 3)} GB")
+    print(f" Free Space : {usage.free // (1024 ** 3)} GB") 
 
 
 ## now creating a switch statement to do all the tasks as demanded by the user
@@ -120,7 +127,8 @@ def File_Manager(run):
         print("8. Copy file from one folder to another")
         print("9. Copy a folder from one place to another")
         print("10. Move a folder or file from one place to another")
-        print("11. EXIT")
+        print("11. Check disk usage of a file or a folder")
+        print("12. EXIT")
 
         print("Choose from 1-7")
         choice = input("You would like to : ")
@@ -168,8 +176,12 @@ def File_Manager(run):
             move_fof = input("Enter the source of the file or folder: ") ###fof means file or folder
             move_fof_to = input("Enter the destination of the file or folder: ")
             move_file_directory(move_fof, move_fof_to)
-            
+
         elif choice == '11':
+            usage_path = input("Enter the path of the file: ")
+            check_disk_usage(usage_path)
+
+        elif choice == '12':
             run = False
         else:
             run = True
