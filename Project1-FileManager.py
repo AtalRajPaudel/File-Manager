@@ -111,6 +111,21 @@ def check_disk_usage(path):
     print(f" Used: {usage.used//(1024 ** 3)} GB")
     print(f" Free Space : {usage.free // (1024 ** 3)} GB") 
 
+#To get file properties like creation time, file size and modified time of the file
+def get_file_properties(file_path):
+    try:
+        stats = os.stats(file_path)
+        print(f"File Size: {stats.st_size}")
+        print(f"File Creation: {time.ctime(stats.st_ctime)}")
+        ###The os.stats(file path).st_ctime behaves differently in different operating system.
+        ## In UNIX it gives the time when the files metadata(permission,ownership) was changed.
+        ### IN windows it gives the time when the file was created since the epoch.
+        print(f"File Modified: {time.ctime(stats.st_mtime)}")
+    except FileNotFoundError:
+        print(f"The file does not exists in the location '{file_path}'.")
+    except Exception as e:
+        print(f"An error occured {e}")
+
 
 ## now creating a switch statement to do all the tasks as demanded by the user
 def File_Manager(run):
