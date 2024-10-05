@@ -104,7 +104,6 @@ def move_file_directory(source,destination):
         print(f"An error occured.'{e}')
 
 #To check disk usage of the folder or file
-
 def check_disk_usage(path):
     usage = shutil.disk_usage(path)
     print(f"Total Space : {usage.total//(1024**3)} GB")
@@ -143,7 +142,8 @@ def File_Manager(run):
         print("9. Copy a folder from one place to another")
         print("10. Move a folder or file from one place to another")
         print("11. Check disk usage of a file or a folder")
-        print("12. EXIT")
+        print("12. Get File properties")
+        print("13. EXIT")
 
         print("Choose from 1-7")
         choice = input("You would like to : ")
@@ -195,8 +195,12 @@ def File_Manager(run):
         elif choice == '11':
             usage_path = input("Enter the path of the file: ")
             check_disk_usage(usage_path)
-
+            
         elif choice == '12':
+            file_properties_path = input("Enter the path of the file: ")
+            get_file_properties(file_properties_path)
+
+        elif choice == '13':
             run = False
         else:
             run = True
