@@ -125,6 +125,15 @@ def get_file_properties(file_path):
     except Exception as e:
         print(f"An error occured {e}")
 
+## to view file content
+def view_file_content(file_path):
+    with open("file_path",'r') as file:
+        print(file.read())
+    except FileNotFoundError:
+        print(f"The file in the path '{file_path}' does not exist.")
+    except Exception as e:
+        print(f"An error occured. {e}")
+        
 
 ## now creating a switch statement to do all the tasks as demanded by the user
 def File_Manager(run):
@@ -143,7 +152,8 @@ def File_Manager(run):
         print("10. Move a folder or file from one place to another")
         print("11. Check disk usage of a file or a folder")
         print("12. Get File properties")
-        print("13. EXIT")
+        print("13. to view file content")
+        print("14. EXIT")
 
         print("Choose from 1-7")
         choice = input("You would like to : ")
@@ -199,8 +209,12 @@ def File_Manager(run):
         elif choice == '12':
             file_properties_path = input("Enter the path of the file: ")
             get_file_properties(file_properties_path)
-
+            
         elif choice == '13':
+            file_view = input("Enter the path of the file: ")
+            view_file_content(file_view)
+
+        elif choice == '14':
             run = False
         else:
             run = True
