@@ -160,25 +160,31 @@ def File_Manager(run):
 
         if choice == '1':
             current_directory()
+            
         elif choice == '2':
             to_list_directory = input(f"Enter the directory path: ")
             list_directory(to_list_directory)
+            
         elif choice == '3':
             directory_name = input("Enter the directory name : ")
             directory_path = input("Enter the path of the directory: ")
             new_directory_path = os.path.join(directory_path, directory_name)
             create_directory(new_directory_path)
+            
         elif choice == '4':
             to_delete_directory = input("Enter the path of the directory along with the name: ")
             delete_directory(to_delete_directory)
+            
         elif choice == '5':
             file_path = input("Enter the path of the directory: ")
             file_name = input("Enter the name of the file to create: ")
             new_file_path = os.path.join(file_path, file_name)
             create_file(new_file_path)
+            
         elif choice == '6':
             file_to_delete = input("Enter the file path: ")
             delete_file(file_to_delete)
+            
         elif choice == '7':
             rename_file_path = input("Enter the file path: ")
             current_name = input("Enter the current name of the file: ")
