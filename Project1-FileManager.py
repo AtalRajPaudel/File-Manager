@@ -164,7 +164,8 @@ def File_Manager(run):
         print("11. Check disk usage of a file or a folder")
         print("12. Get File properties")
         print("13. to view file content")
-        print("14. EXIT")
+        print("14. to zip a file or a directory")
+        print("15. EXIT")
 
         print("Choose from 1-7")
         choice = input("You would like to : ")
@@ -230,8 +231,13 @@ def File_Manager(run):
         elif choice == '13':
             file_view = input("Enter the path of the file: ")
             view_file_content(file_view)
-
+            
         elif choice == '14':
+            zip_name = input("Enter the name of the file: ")
+            zip_source = input("Enter the path of the file: ")
+            Zip_file_directory(zip_name, zip_source)
+
+        elif choice == '15':
             run = False
         else:
             run = True
