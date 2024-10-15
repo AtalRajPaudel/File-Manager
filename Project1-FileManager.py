@@ -1,5 +1,7 @@
 import os
 import shutil
+import time
+import zipfile
 
 ##Defining the functions
 ## to know current directory
@@ -125,6 +127,7 @@ def get_file_properties(file_path):
     except Exception as e:
         print(f"An error occured {e}")
 
+
 ## to view file content
 def view_file_content(file_path):
     with open("file_path",'r') as file:
@@ -133,6 +136,14 @@ def view_file_content(file_path):
         print(f"The file in the path '{file_path}' does not exist.")
     except Exception as e:
         print(f"An error occured. {e}")
+
+###To zip a file or directory
+def zip_file_directory(name,source):
+    try:
+        shutil.make_archive(name,'zip',source)
+        print(f"The file at '{source}' has been zipped at '{name}.zip'")
+    except Exception as e:
+        print(f"An error occured: {e}")
         
 
 ## now creating a switch statement to do all the tasks as demanded by the user
