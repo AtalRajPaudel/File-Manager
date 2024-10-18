@@ -144,6 +144,15 @@ def zip_file_directory(name,source):
         print(f"The file at '{source}' has been zipped at '{name}.zip'")
     except Exception as e:
         print(f"An error occured: {e}")
+
+###To unzip a file or directory
+def unzip_directory(zip_path, extract_to):
+try:
+    with zipfile.zipFile(zip_path,'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+        print(f"The zip file from {zip_path} has been extracted to {extract_to}")
+except Exception as e:
+    print(f"An error occured. {e}")
         
 
 ## now creating a switch statement to do all the tasks as demanded by the user
